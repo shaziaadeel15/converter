@@ -132,7 +132,7 @@
 	    <profile>
 			<id>deploy-heroku</id>
 			<properties>
-				<maven.deploy.skip>true</maven.deploy.skip>
+				<maven.deploy.skip>false</maven.deploy.skip>
 			</properties>
 			<build>
 				<plugins>
