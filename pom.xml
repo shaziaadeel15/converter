@@ -11,7 +11,7 @@
 	<groupId>com</groupId>
 	<artifactId>converter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>converter</name>
+	<name>converter-web</name>
 	<description>Project for unit conversion</description>
 
 	<properties>
@@ -141,7 +141,7 @@
 						<artifactId>heroku-maven-plugin</artifactId>
 						<version>3.0.2</version>
 						<configuration>
-							<appName>converter</appName>
+							<appName>converter-web</appName>
 							<processTypes>
 								<web>java $JAVA_OPTS -jar -Dserver.port=$PORT target/${project.build.finalName}.jar</web>
 							</processTypes>
@@ -150,31 +150,6 @@
 				</plugins>
 			</build>
 		</profile>
-
-		<profile>
-            <id>deploy-docker</id>
-            <properties>
-                <maven.deploy.skip>true</maven.deploy.skip>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.google.cloud.tools</groupId>
-                        <artifactId>jib-maven-plugin</artifactId>
-                        <version>2.2.0</version>
-                        <configuration>
-                            <to>
-                                <image>registry.hub.docker.com/baeldungjib/converter-ci-cd-process</image>
-                                <tags>
-                                    <tag>${project.version}</tag>
-                                    <tag>latest</tag>
-                                </tags>
-                            </to>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
 	</profiles>
 
 </project>
