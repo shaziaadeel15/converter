@@ -77,6 +77,12 @@
 				<groupId>com.heroku.sdk</groupId>
 				<artifactId>heroku-maven-plugin</artifactId>
 				<version>3.2.0</version>
+				<configuration>
+					<appName>converter-web</appName>
+					<processTypes>
+						<web>java $JAVA_OPTS -jar -Dserver.port=$PORT target/${project.build.finalName}.jar</web>
+					</processTypes>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>com.spotify</groupId>

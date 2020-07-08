@@ -11,7 +11,7 @@
 	<groupId>com</groupId>
 	<artifactId>converter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>converter</name>
+	<name>converter-web</name>
 	<description>Project for unit conversion</description>
 
 	<properties>
@@ -72,7 +72,18 @@
 
 	<build>
 		<finalName>converter-web</finalName>
-		<plugins>
+			<plugins>
+			<plugin>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<appName>converter-web</appName>
+					<processTypes>
+						<web>java $JAVA_OPTS -jar -Dserver.port=$PORT target/${project.build.finalName}.jar</web>
+					</processTypes>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
@@ -91,6 +102,26 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.5</version>
+				<executions>
+					<execution>
+						<id>default-prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
@@ -104,30 +135,27 @@
 	</build>
 
 	<profiles>
-		<profile>
-            <id>deploy-docker</id>
-            <properties>
-                <maven.deploy.skip>true</maven.deploy.skip>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.google.cloud.tools</groupId>
-                        <artifactId>jib-maven-plugin</artifactId>
-                        <version>2.2.0</version>
-                        <configuration>
-                            <to>
-                                <image>registry.hub.docker.com/baeldungjib/converter-ci-cd-process</image>
-                                <tags>
-                                    <tag>${project.version}</tag>
-                                    <tag>latest</tag>
-                                </tags>
-                            </to>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
+	    <profile>
+			<id>deploy-heroku</id>
+			<properties>
+				<maven.deploy.skip>false</maven.deploy.skip>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.heroku.sdk</groupId>
+						<artifactId>heroku-maven-plugin</artifactId>
+						<version>3.0.2</version>
+						<configuration>
+							<appName>converter-web</appName>
+							<processTypes>
+								<web>java $JAVA_OPTS -jar -Dserver.port=$PORT target/${project.build.finalName}.jar</web>
+							</processTypes>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 
 </project>
