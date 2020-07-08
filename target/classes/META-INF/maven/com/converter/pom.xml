@@ -86,23 +86,7 @@
 					</processTypes>
 				</configuration>
 			</plugin>
-			<!--  
-			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<configuration>
-					<imageName>converter-web</imageName>
-					<baseImage>java:8</baseImage>
-					<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
-					<resources>
-					<resource>
-						<targetPath>/</targetPath>
-						<directory>${project.build.directory}</directory>
-						<include>${project.build.finalName}.jar</include>
-					</resource>
-					</resources>
-				</configuration>
-			</plugin>-->
+			
 			
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -139,41 +123,7 @@
 			    </plugins>
 		    </build>
 		</profile>
-		
-		<!--  
-		<profile>
-			<id>deploy-docker</id>
-			<properties>
-				<maven.deploy.skip>false</maven.deploy.skip>
-			</properties>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.spotify</groupId>
-						<artifactId>docker-maven-plugin</artifactId>
-						<executions>
-	    					<execution>
-	      						<id>default</id>
-	      						<goals>
-	        						<goal>build</goal>
-	        						<goal>push</goal>
-	      						</goals>
-	    					</execution>
-  						</executions>
-						<configuration>
-							<repository>converter/converter-ci-cd-process</repository>
-						    <tag>${project.version}</tag>
-						    <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
-						    <buildArgs>
-						      <JAR_FILE>${project.build.finalName}-jar-with-dependencies.jar</JAR_FILE>
-						    </buildArgs>
-						   
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		-->
+	
 	</profiles>
 
 </project>

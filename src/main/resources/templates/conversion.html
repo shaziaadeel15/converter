@@ -24,9 +24,9 @@
 		<div class="row justify-content-md-left">
 			<div class="col-md-10">
 				<strong> <h5>Please choose input file (CVS format)</h5></strong>
-				<h6 class="font-italic">File should be of format {input value}, {input unit}, {student response}, {output unit}</h6>
+				<span class="font-italic">File should be of format {input value}, {input unit}, {student response}, {output unit}</span>
 				<br>
-				
+				<br>
 				<form th:action="@{'/fileupload'}" th:object="${fileData}" method="post" enctype='multipart/form-data'>
 					<div class="form-group mb-1">
 						<input type="file" class="form-control" id="file" name="file" th:field="*{multipartFile}" style="line-height:1;">
