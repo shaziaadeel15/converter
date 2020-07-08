@@ -1,0 +1,17 @@
+com/converter/models/utilities/UnitTypes.class
+com/converter/controllers/ErrorController.class
+com/converter/models/utilities/TemperatureUnit.class
+com/converter/controllers/FileController.class
+com/converter/ConverterApplication.class
+com/converter/controllers/ConversionController.class
+com/converter/models/FileData.class
+com/converter/models/ConversionDataDTO.class
+com/converter/services/utilities/UnitConversionService.class
+com/converter/models/utilities/SystemTypes.class
+com/converter/models/utilities/Unit.class
+com/converter/services/ConverionService.class
+com/converter/models/utilities/VolumeUnit.class
+com/converter/models/utilities/UnitFactory.class
+com/converter/models/ConversionData.class
+com/converter/controllers/SingleValueController.class
+com/converter/services/FileService.class
