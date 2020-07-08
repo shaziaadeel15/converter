@@ -75,6 +75,7 @@
 
 	<build>
 		<finalName>converter-web</finalName>
+		<defaultGoal>install</defaultGoal>
 			<plugins>
 			<plugin>
 				<groupId>com.heroku.sdk</groupId>
@@ -140,6 +141,31 @@
 				</plugins>
 			</build>
 		</profile>
+		
+		<profile>
+            <id>deploy-docker</id>
+            <properties>
+                <maven.deploy.skip>true</maven.deploy.skip>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.spotify</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <configuration>
+                            <to>
+                                <image>registry.hub.docker.com/converter/converter-ci-cd-process</image>
+                                <tags>
+                                    <tag>${project.version}</tag>
+                                    <tag>latest</tag>
+                                </tags>
+                            </to>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
 	</profiles>
 
 </project>
