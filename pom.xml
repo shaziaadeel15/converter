@@ -69,7 +69,7 @@
 		   <scope>provided</scope>
 		</dependency>
 	</dependencies>
-
+	
 	<build>
 		<finalName>converter-web</finalName>
 		<plugins>
