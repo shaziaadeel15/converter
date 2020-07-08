@@ -13,4 +13,4 @@ script:
   - ./mvnw heroku:deploy jib:build -P deploy-heroku,deploy-docker
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash -t df7cc247-5b4e-47e0-b6da-4fd1bc8f0875)
