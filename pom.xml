@@ -162,13 +162,19 @@
 	    					</execution>
   						</executions>
 						<configuration>
+							<repository>converter/converter-ci-cd-process</repository>
+						    <tag>${project.version}</tag>
+						    <buildArgs>
+						      <JAR_FILE>${project.build.finalName}-jar-with-dependencies.jar</JAR_FILE>
+						    </buildArgs>
+						    <!--  
 							<to>
 								<image>registry.hub.docker.com/converter/converter-ci-cd-process</image>
 								<tags>
 									<tag>${project.version}</tag>
 									<tag>latest</tag>
 								</tags>
-							</to>
+							</to>-->
 						</configuration>
 					</plugin>
 				</plugins>
