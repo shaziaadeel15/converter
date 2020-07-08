@@ -9,7 +9,7 @@
 	<link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" >
 </head>
 
-<body>
+<body class="bg-light text-dark">
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">
       <a href="#" class="navbar-brand d-flex align-items-center">
@@ -19,12 +19,77 @@
     </div>
   </div>
   
-  <section class="jumbotron jumbotron-fluid" style="height:100vh;">
+  <section ><!--  class="jumbotron jumbotron-fluid" style="height:100vh;"> -->
 	<div class="container ">
-		<div class="row justify-content-md-left">
+		<div class="row justify-content-md-center ">
+			<div class="col-md-10 col-md-offset-10 ">
+				<br>
+				<h5> This utility can be used for checking unit conversion between </h5>
+				<h6> - Volume units: liters, tablespoons, cubic-inches, cups, cubic-feet, and gallons </h6>
+				<h6> - Temperature units: Kelvin, Celsius, Fahrenheit, and Rankine </h6>
+	
+			</div>
+		</div>
+		<br>
+		<br>
+		<div class="row justify-content-md-center ">
+			<div class="col-md-10 col-md-offset-10 ">
+			
+				<div class="card">
+					<div class="card-header">
+						<div class="row justify-content-md-center">
+							<label for="inputDouble" class="control-label col-sm-2">Input Value</label> 
+							<label for="inputUnitString" class="control-label col-sm-3">Input Unit</label> 
+							<label for="responseDouble" class="control-label col-sm-2">Output value</label> 
+							<label for="outputUnitString" class="control-label col-sm-3">Output Unit</label>
+							<label for="resultString" class="control-label col-sm-2">Result</label> 
+							
+						</div>
+					</div>
+					<div class="card-body">
+						<form th:action="@{/}" method="post"  th:if="${form}!=null" th:object="${form}" >
+							<div class="form-group" >	
+								<div class="row justify-content-md-center" th:each="conversionData, itemStat : *{conversionDatas}">	
+									
+									<input id="inputDouble" class="form-control col-sm-2"
+									 th:field="*{conversionDatas[__${itemStat.index}__].inputDouble}"/>  
+									
+									<input id="inputUnitString" class="form-control col-sm-3 dropdown-toggle"
+									 th:field="*{conversionDatas[__${itemStat.index}__].inputUnitString}"/>  
+ 
+									
+									<input id="responseDouble" class="form-control col-sm-2"
+									 th:field="*{conversionDatas[__${itemStat.index}__].responseDouble}"/> 
+									
+									<input id="outputUnitString" class="form-control col-sm-3"
+									 th:field="*{conversionDatas[__${itemStat.index}__].outputUnitString}"/> 
+									
+									<input id="resultString" class="form-control col-sm-2"
+									 th:field="*{conversionDatas[__${itemStat.index}__].resultString}" readonly/>
+									
+								</div>
+								<br>
+								<div class="row justify-content-md-left">
+									
+									<button name="action" value="check" type="submit" class="btn btn-success col-sm-2 ml-1">Check Data</button>
+									<button name="action" value="addrow" type="submit" class="btn btn-success col-sm-2 ml-1">Add Row</button>
+									 <button type="reset" name="reset" onclick="location.href='/'" value="Submit"
+										class="btn btn-success col-sm-2 ml-1">Reset</button>
+								</div>
+							</div>
+						</form>
+					</div>
+						
+				</div>
+			
+			</div>
+		</div>
+		<br>
+		<br>
+		<div class="row justify-content-md-center">
 			<div class="col-md-10">
-				<strong> <h5>Please choose input file</h5></strong>
-				<span class="font-italic">File should be of CVS format with each record  {input value}, {input unit}, {student response}, {output unit}</span>
+				<strong> <h5>Please choose a file for bulk data input</h5></strong>
+				<span class="font-italic">File should be of CVS format with each record  {input value}, {input unit}, {output value}, {output unit}</span>
 				<br>
 				<br>
 				<form th:action="@{'/fileupload'}" th:object="${fileData}" method="post" enctype='multipart/form-data'>
@@ -35,8 +100,8 @@
 					<!--  <button type="btn btn-success submit" class="btn btn-primary">Submit</button>-->
 					<button type="submit" class="btn btn-success col-sm-2 ml-1">Upload</button>
 					
-					<button type="reset" name="reset" onclick="location.href='/'" value="Submit"
-												class="btn btn-success col-sm-2 ml-1">Reset</button>
+					<!--  <button type="reset" name="reset" onclick="location.href='/'" value="Submit"
+												class="btn btn-success col-sm-2 ml-1">Reset</button> -->
 				</form>
 				
 				<br>
@@ -56,58 +121,6 @@
 				  <strong th:text="${failmsg}"></strong>
 				</div>
 				<br>
-			</div>
-		</div>
-		<br>
-		<div class="row justify-content-md-center ">
-			<div class="col-md-12 col-md-offset-12 ">
-			
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<form th:action="@{/}" method="post"  th:if="${form}!=null" th:object="${form}" >
-							<div class="form-group" >
-										<div class="row">
-											<label for="inputDouble" class="control-label col-sm-2">Input Value</label> 
-											<label for="inputUnitString" class="control-label col-sm-2">Input Unit</label> 
-											<label for="responseDouble" class="control-label col-sm-2">Student Response</label> 
-											<label for="outputUnitString" class="control-label col-sm-2">Output Unit</label>
-											<label for="resultString" class="control-label col-sm-2">Result</label> 
-											
-										</div>
-										
-											<div class="row" th:each="conversionData, itemStat : *{conversionDatas}">	
-												
-												<input id="inputDouble" class="form-control col-sm-2"
-												 th:field="*{conversionDatas[__${itemStat.index}__].inputDouble}"/>  
-												
-												<input id="inputUnitString" class="form-control col-sm-2"
-												 th:field="*{conversionDatas[__${itemStat.index}__].inputUnitString}"/>  <!--th:value="${data.inputUnitString}"/> -->
-												
-												<input id="responseDouble" class="form-control col-sm-2"
-												 th:field="*{conversionDatas[__${itemStat.index}__].responseDouble}"/> 
-												
-												<input id="outputUnitString" class="form-control col-sm-2"
-												 th:field="*{conversionDatas[__${itemStat.index}__].outputUnitString}"/> 
-												
-												<input id="resultString" class="form-control col-sm-2"
-												 th:field="*{conversionDatas[__${itemStat.index}__].resultString}" readonly/>
-												
-											</div>
-
-										<br>
-										<div class="row ">
-											
-											<button type="submit" class="btn btn-success col-sm-2 ml-1">Check Data</button>
-											
-											<!--  <button type="reset" name="reset" onclick="location.href='/'" value="Submit"
-												class="btn btn-success col-sm-2 ml-1">Reset</button>-->
-										</div>
-							</div>
-						</form>
-					</div>
-						
-				</div>
-			
 			</div>
 		</div>
 	</div>

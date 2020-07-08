@@ -68,7 +68,7 @@ class ConversionControllerTest {
 		//org.mockito.Mockito.when(conversionService.convertDataList(form));
 		
 		
-		RequestBuilder request = MockMvcRequestBuilders.post("/");
+		RequestBuilder request = MockMvcRequestBuilders.post("/").param("action", "check");
 		 
 		MvcResult result = mvc.perform(request)
 				.andExpect(status().isOk())

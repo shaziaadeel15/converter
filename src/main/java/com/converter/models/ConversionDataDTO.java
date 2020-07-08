@@ -18,6 +18,12 @@ public class ConversionDataDTO {
 	}
 	
 	/// List new record
+	public void addEmptyConversionData()
+	{
+		this.conversionDatas.add(new ConversionData(0.0, "", 0.0, ""));
+	}
+	
+	/// List new record
 	public void addConversionData(Double inputValue, String inputUnit,  Double outputValue, String outputUnit)
 	{
 		this.conversionDatas.add(new ConversionData(inputValue, inputUnit, outputValue, outputUnit));
