@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Unit Conversion</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel='icon' href='favicon.ico' type='image/x-icon'/ >
+	<link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" >
+</head>
+
+<body>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container d-flex justify-content-between">
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <strong>Unit Conversion</strong>
+      </a>
+      
+    </div>
+  </div>
+  
+  <section class="jumbotron jumbotron-fluid" style="height:100vh;">
+	<div class="container ">
+		<div class="row justify-content-md-left">
+			<div class="col-md-10">
+				<strong> <h5>Please choose input file (CVS format)</h5></strong>
+				<h6 class="font-italic">File should be of format {input value}, {input unit}, {student response}, {output unit}</h6>
+				<br>
+				
+				<form th:action="@{'/fileupload'}" th:object="${fileData}" method="post" enctype='multipart/form-data'>
+					<div class="form-group mb-1">
+						<input type="file" class="form-control" id="file" name="file" th:field="*{multipartFile}" style="line-height:1;">
+					</div>
+					<br>
+					<!--  <button type="btn btn-success submit" class="btn btn-primary">Submit</button>-->
+					<button type="submit" class="btn btn-success col-sm-2 ml-1">Upload</button>
+					
+					<button type="reset" name="reset" onclick="location.href='/'" value="Submit"
+												class="btn btn-success col-sm-2 ml-1">Reset</button>
+				</form>
+				
+				<br>
+				<!-- Alert message that file successfully read and uploaded -->
+				<div class="alert alert-warning alert-dismissible fade show" role="alert" th:if="${successmsg}">
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				    <span aria-hidden="true">&times;</span>
+				  </button>
+				  <strong th:text="${successmsg}"></strong>
+				</div>
+				
+				<!-- Error message that file successfully read and uploaded -->
+				<div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${failmsg}">
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				    <span aria-hidden="true">&times;</span>
+				  </button>
+				  <strong th:text="${failmsg}"></strong>
+				</div>
+				<br>
+			</div>
+		</div>
+		<br>
+		<div class="row justify-content-md-center ">
+			<div class="col-md-12 col-md-offset-12 ">
+			
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<form th:action="@{/}" method="post"  th:if="${form}!=null" th:object="${form}" >
+							<div class="form-group" >
+										<div class="row">
+											<label for="inputDouble" class="control-label col-sm-2">Input Value</label> 
+											<label for="inputUnitString" class="control-label col-sm-2">Input Unit</label> 
+											<label for="responseDouble" class="control-label col-sm-2">Student Response</label> 
+											<label for="outputUnitString" class="control-label col-sm-2">Output Unit</label>
+											<label for="resultString" class="control-label col-sm-2">Result</label> 
+											
+										</div>
+										
+											<div class="row" th:each="conversionData, itemStat : *{conversionDatas}">	
+												
+												<input id="inputDouble" class="form-control col-sm-2"
+												 th:field="*{conversionDatas[__${itemStat.index}__].inputDouble}"/>  
+												
+												<input id="inputUnitString" class="form-control col-sm-2"
+												 th:field="*{conversionDatas[__${itemStat.index}__].inputUnitString}"/>  <!--th:value="${data.inputUnitString}"/> -->
+												
+												<input id="responseDouble" class="form-control col-sm-2"
+												 th:field="*{conversionDatas[__${itemStat.index}__].responseDouble}"/> 
+												
+												<input id="outputUnitString" class="form-control col-sm-2"
+												 th:field="*{conversionDatas[__${itemStat.index}__].outputUnitString}"/> 
+												
+												<input id="resultString" class="form-control col-sm-2"
+												 th:field="*{conversionDatas[__${itemStat.index}__].resultString}" readonly/>
+												
+											</div>
+
+										<br>
+										<div class="row ">
+											
+											<button type="submit" class="btn btn-success col-sm-2 ml-1">Check Data</button>
+											
+											<!--  <button type="reset" name="reset" onclick="location.href='/'" value="Submit"
+												class="btn btn-success col-sm-2 ml-1">Reset</button>-->
+										</div>
+							</div>
+						</form>
+					</div>
+						
+				</div>
+			
+			</div>
+		</div>
+	</div>
+  </section>	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
+</body>
+
+</html>
