@@ -19,8 +19,6 @@
 		<start-class>com.converter.ConverterApplication</start-class>
 	</properties>
 	
-	
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -88,15 +86,14 @@
 					</processTypes>
 				</configuration>
 			</plugin>
+			<!--  
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<configuration>
-					<!--  <imageName>converterboot</imageName>-->
 					<imageName>converter-web</imageName>
 					<baseImage>java:8</baseImage>
 					<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
-					<!-- copy the service's jar file from target into the root directory of the image --> 
 					<resources>
 					<resource>
 						<targetPath>/</targetPath>
@@ -105,7 +102,7 @@
 					</resource>
 					</resources>
 				</configuration>
-			</plugin>
+			</plugin>-->
 			
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -143,6 +140,7 @@
 		    </build>
 		</profile>
 		
+		<!--  
 		<profile>
 			<id>deploy-docker</id>
 			<properties>
@@ -169,19 +167,13 @@
 						    <buildArgs>
 						      <JAR_FILE>${project.build.finalName}-jar-with-dependencies.jar</JAR_FILE>
 						    </buildArgs>
-						    <!--  
-							<to>
-								<image>registry.hub.docker.com/converter/converter-ci-cd-process</image>
-								<tags>
-									<tag>${project.version}</tag>
-									<tag>latest</tag>
-								</tags>
-							</to>-->
+						   
 						</configuration>
 					</plugin>
 				</plugins>
 			</build>
 		</profile>
+		-->
 	</profiles>
 
 </project>
