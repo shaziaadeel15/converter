@@ -91,15 +91,6 @@
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				 <executions>
-    					<execution>
-      						<id>default</id>
-      						<goals>
-        						<goal>build</goal>
-        						<goal>push</goal>
-      						</goals>
-    					</execution>
-  				</executions>
 				<configuration>
 					<imageName>converterboot</imageName>
 					<baseImage>java:8</baseImage>
@@ -161,6 +152,15 @@
 					<plugin>
 						<groupId>com.spotify</groupId>
 						<artifactId>docker-maven-plugin</artifactId>
+						<executions>
+	    					<execution>
+	      						<id>default</id>
+	      						<goals>
+	        						<goal>build</goal>
+	        						<goal>push</goal>
+	      						</goals>
+	    					</execution>
+  						</executions>
 						<configuration>
 							<to>
 								<image>registry.hub.docker.com/converter/converter-ci-cd-process</image>
