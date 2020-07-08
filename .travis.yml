@@ -10,7 +10,7 @@ before_install:
 
 script:
   - ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent install
-  - HEROKU_API_KEY="f65bbf78-624f-44d6-b477-60e65d705f33"  ./mvnw heroku:deploy -P deploy-heroku deploy-docker
+  - HEROKU_API_KEY="f65bbf78-624f-44d6-b477-60e65d705f33"  ./mvnw heroku:deploy docker:build -P deploy-heroku deploy-docker
 
 after_success:
   - bash <(curl -s https://codecov.io/bash -t df7cc247-5b4e-47e0-b6da-4fd1bc8f0875)
