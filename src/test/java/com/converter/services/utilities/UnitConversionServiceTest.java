@@ -45,6 +45,19 @@ class UnitConversionServiceTest {
 	}
 	
 	/**
+	 * Test case: When input unit is of type volume and input value is less than 0
+	 */
+	@Test
+	void testTemperatureInvalidConversionTest3() {
+		
+		if(UnitConversionService==null)
+			System.out.println("Object is null");
+		
+		assertThrows(IllegalArgumentException.class, () -> { UnitConversionService.convert("liter",-1.0, "cups");});
+		
+	}
+	
+	/**
 	 *  Test Case: If source and target value is same then input value equal to output value
 	 */
 	@Test

@@ -30,28 +30,37 @@ public class UnitConversionService {
 	 * @param targetString
 	 * @return
 	 */
-	public Double convert(String sourceString, Double sourceValueDouble, String targetString)
+	public Double convert(String inputUnitString, Double inputValue, String outputUnitString)
 	{
 		
-		if(sourceString==null 
-				|| sourceValueDouble==null || targetString==null)
+		if(inputUnitString==null 
+				|| inputValue==null || outputUnitString==null)
 			throw new IllegalArgumentException("Illegel Argument");
 		
-		Double resultDouble = sourceValueDouble;
-		Unit sourceUnit = UnitFactory.buildUnit( sourceString );
-		Unit targetUnit = UnitFactory.buildUnit( targetString );
+		Double resultDouble = inputValue;
+		Unit sourceUnit = UnitFactory.buildUnit( inputUnitString );
+		Unit targetUnit = UnitFactory.buildUnit( outputUnitString );
 		
 		//if both units are same then do nothing
 		if(sourceUnit.getNameString().equals(targetUnit.getNameString()))
 		{
-			logger.trace("UnitConversionService....both units are same"+sourceString+" -> "+targetString);
+			logger.trace("UnitConversionService....both units are same"+inputUnitString+" -> "+outputUnitString);
 			return resultDouble;
 		}
 		
+		//If input and out units are from different system then return error
 		if(sourceUnit.getTypeString().equals(targetUnit.getTypeString()) == false)
 		{
-			logger.error("UnitConversionService...."+sourceString+" -> "+targetString+" conversion not possible");
+			logger.error("UnitConversionService...."+inputUnitString+" -> "+outputUnitString+" conversion not possible");
 			throw new IllegalArgumentException("Both unit are of different type, conversion is not possible");
+		}
+		
+		
+		/// If source unit is of type volume then input value must be greater than or equal to  0
+		if(sourceUnit instanceof VolumeUnit  && inputValue < 0.0 )
+		{
+			logger.error("UnitConversionService...."+inputUnitString+" has value "+inputValue+" less than zero");
+			throw new IllegalArgumentException("UnitConversionService...."+inputUnitString+" has value "+inputValue+" less than zero");
 		}
 		
 		//multiple by source anchor
