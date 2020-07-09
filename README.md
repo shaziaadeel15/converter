@@ -42,7 +42,7 @@ The application act in both mode
 - There is also bulk data loading option. Here user can select a CSV file to bulk enter the data. After loading can use "Check Data" button foor checking the results
 - Before doing comparision of result computed by application and result enter values are round to tenths place. Also application can accept answer if there is error of 0.1 in calculation
 
-##Future Enhancements
+## Future Enhancements
 
 - Currently application is accepting two systems, in future can add more unit systems.
 - Bulk loading is accepting CSV file, in future can add support of Excel sheets, JSON format files.
