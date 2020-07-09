@@ -33,6 +33,11 @@ public class ConversionController {
 	ConverionService conversionService;
 	
 	//Default mapper
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/")
 	public String convert( Model model)
 	{

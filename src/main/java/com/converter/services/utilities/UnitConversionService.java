@@ -24,10 +24,14 @@ public class UnitConversionService {
 	}
 	
 	/**
-	 * 
-	 * @param sourceString
-	 * @param sourceValueDouble
-	 * @param targetString
+	 * Function for doing unit conversion.
+	 *  First check if both input and output unit same then no need of doing conversion
+	 *  In case source and target units are form different unit system like one from volume other from temperature then return error
+	 *  For volume unit value must be greater than equal to zero
+	 *  In end after conversion round value to tenth place
+	 * @param inputUnitString
+	 * @param inputValue
+	 * @param outputUnitString
 	 * @return
 	 */
 	public Double convert(String inputUnitString, Double inputValue, String outputUnitString)
@@ -72,6 +76,8 @@ public class UnitConversionService {
 		//conversion between metric and imperial systems
 		if(sourceUnit.getSystemString().equals(targetUnit.getSystemString()) ==false)
 		{
+			resultDouble =  sourceUnit.toBase(resultDouble);
+			/*
 			//type is temperature then apply transfer function
 			if (sourceUnit instanceof TemperatureUnit) {
 				resultDouble =  ((TemperatureUnit) sourceUnit).transfer(resultDouble);
@@ -79,7 +85,7 @@ public class UnitConversionService {
 			//type is volume apply ratio function
 			else {
 				resultDouble =  ((VolumeUnit) sourceUnit).applyRatio(resultDouble);
-			}
+			}*/
 		}
 		
 		//add destination anchor shift
@@ -88,7 +94,7 @@ public class UnitConversionService {
 		//multiple by destination anchor
 		resultDouble = resultDouble / targetUnit.getAnchorDouble();
 		
-		/// round to 4 decimal places
+		/// round to tenth decimal places
 		resultDouble = Math.round(resultDouble * 10D) / 10D;
 		
 		return resultDouble;

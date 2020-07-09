@@ -2,6 +2,11 @@ package com.converter.models;
 
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * 
+ * @author shaziaadeel
+ * File object for getting selected input file stream 
+ */
 public class FileData {
 	private String fileTypeString;
 	private MultipartFile multipartFile;

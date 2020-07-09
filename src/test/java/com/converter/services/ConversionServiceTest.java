@@ -13,6 +13,12 @@ import com.converter.models.ConversionData;
 import com.converter.models.ConversionDataDTO;
 import com.converter.services.utilities.UnitConversionService;
 
+
+/**
+ * 
+ * @author shaziaadeel
+ *
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ConversionServiceTest {
@@ -30,7 +36,7 @@ class ConversionServiceTest {
 	@Test
 	void correctTestCase1() {
 		
-		ConversionData data= new ConversionData(10.0, "cubic-feet", 74.8, "gallon");
+		ConversionData data= new ConversionData("10.0", "cubic-feet", "74.8", "gallon");
 		
 		conversionService.convert(data);
 
@@ -44,7 +50,21 @@ class ConversionServiceTest {
 	@Test
 	void correctTestCase2() {
 		
-		ConversionData data= new ConversionData(10.0, "cubic-feet", 74.7, "gallon");
+		ConversionData data= new ConversionData("10.0", "cubic-feet", "74.7", "gallon");
+		
+		conversionService.convert(data);
+
+		assertEquals(conversionService.CORRECT_RESULT, conversionService.convert(data), "Conversion Service test case 1 fail");
+		
+	}
+	
+	/**
+	 * Test Case: Another scenario of correct conversion
+	 */
+	@Test
+	void correctTestCase3() {
+		
+		ConversionData data= new ConversionData("10", "cubic-feet", "74.7", "gallon");
 		
 		conversionService.convert(data);
 
@@ -58,7 +78,7 @@ class ConversionServiceTest {
 	@Test
 	void failTestCase1() {
 		
-		ConversionData data= new ConversionData(10.0, "cubic-feet", 73.8, "gallon");
+		ConversionData data= new ConversionData("10.0", "cubic-feet", "73.8", "gallon");
 		
 		conversionService.convert(data);
 
@@ -72,7 +92,35 @@ class ConversionServiceTest {
 	@Test
 	void failTestCase2() {
 		
-		ConversionData data= new ConversionData(10.0, "abc", 73.8, "gallon");
+		ConversionData data= new ConversionData("10.0", "abc", "73.8", "gallon");
+		
+		conversionService.convert(data);
+
+		assertEquals(conversionService.INVALID_RESULT, conversionService.convert(data), "Conversion Service test case 1 fail");
+		
+	}
+	
+	/**
+	 * Test Case: When input data is invalid
+	 */
+	@Test
+	void failTestCase3() {
+		
+		ConversionData data= new ConversionData("abc", "liter", "73.8", "gallon");
+		
+		conversionService.convert(data);
+
+		assertEquals(conversionService.INVALID_RESULT, conversionService.convert(data), "Conversion Service test case 1 fail");
+		
+	}
+	
+	/**
+	 * Test Case: When response data  is invalid
+	 */
+	@Test
+	void failTestCase4() {
+		
+		ConversionData data= new ConversionData("10.0", "liter", "xyz", "gallon");
 		
 		conversionService.convert(data);
 

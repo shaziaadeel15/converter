@@ -53,7 +53,7 @@
 								<div class="row justify-content-md-center" th:each="conversionData, itemStat : *{conversionDatas}">	
 									
 									<input id="inputDouble" class="form-control col-sm-2"
-									 th:field="*{conversionDatas[__${itemStat.index}__].inputDouble}"/>  
+									 th:field="*{conversionDatas[__${itemStat.index}__].inputValueString}"/>  
 									
 									
 									<!--  <input id="inputUnitString" class="form-control col-sm-3 "
@@ -75,7 +75,7 @@
 											</datalist>
 									
 									<input id="responseDouble" class="form-control col-sm-2"
-									 th:field="*{conversionDatas[__${itemStat.index}__].responseDouble}"/> 
+									 th:field="*{conversionDatas[__${itemStat.index}__].responseValueString}"/> 
 									
 									<!--  <input id="outputUnitString" class="form-control col-sm-3"
 									 th:field="*{conversionDatas[__${itemStat.index}__].outputUnitString}"/> -->

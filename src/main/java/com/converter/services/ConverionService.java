@@ -12,7 +12,7 @@ import com.converter.services.utilities.UnitConversionService;
 /**
  * 
  * @author shaziaadeel
- * Service class for doing unit conversion on input data
+ * Service class for doing unit conversion validations.
  */
 @Service
 public class ConverionService {
@@ -22,6 +22,7 @@ public class ConverionService {
 	final String CORRECT_RESULT = "Correct";
 	final String INCORRECT_RESULT = "Incorrect";
 	final String INVALID_RESULT = "Invalid";
+	final Double THRESHOLD_ERROR =0.1;
 	
 	@Autowired
 	UnitConversionService unitConversionService ;
@@ -31,7 +32,8 @@ public class ConverionService {
 	}
 
 	/**
-	 * 
+	 * Function to unit conversion using UnitConversionService service then compare result with value  enter by user
+	 * It is accepting threshold error of 0.1
 	 * @param data
 	 * @return Return string of type 
 	 * 			Correct: When conversion is done correctly
@@ -42,21 +44,28 @@ public class ConverionService {
 	{
 		
 		try {
-			Double actualResultDouble = unitConversionService.convert(data.getInputUnitString(),  data.getInputDouble(), data.getOutputUnitString());
+			Double inputValue = Double.parseDouble(data.getInputValueString());
+			Double responseValue = Double.parseDouble(data.getResponseValueString());
+			
+			//round user response to tenth unit
+			responseValue =  Math.round(responseValue* 10D) / 10D;
+			logger.trace("ConverionService...after rounding  = "+responseValue);
+			
+			/// Perform unit conversion
+			Double actualResultDouble = unitConversionService.convert(data.getInputUnitString(),  inputValue, data.getOutputUnitString());
 			logger.trace("ConverionService...actual value from user = "+actualResultDouble);
 			
-			Double resDouble =  Math.round(data.getResponseDouble() * 10D) / 10D;
-			logger.trace("ConverionService...after rounding  = "+resDouble);
 			
 			///Check calculated value equal to target value, iff there is different of 0.1 then ignore it
-			if( Math.abs(actualResultDouble.doubleValue() - resDouble.doubleValue() ) < 0.2){
+			if( Math.abs(actualResultDouble.doubleValue() - responseValue.doubleValue() ) <= THRESHOLD_ERROR.doubleValue()){
 				return CORRECT_RESULT;
 			}
 			else {
 				return INCORRECT_RESULT;
 			}
 		}
-		catch (IllegalArgumentException e) {
+		catch (IllegalArgumentException | NullPointerException  e) {
+			logger.error(e.getMessage());
 			return INVALID_RESULT;
 		}	
 	}
@@ -65,7 +74,7 @@ public class ConverionService {
 	 * 
 	 * @param datalist
 	 * 
-	 *  Function to convert whole list of data
+	 *  Function to perform validation operation on list of data objects
 	 */
 	public void convertDataList(ConversionDataDTO datalist) 
 	{

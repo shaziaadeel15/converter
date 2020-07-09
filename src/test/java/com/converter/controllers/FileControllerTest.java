@@ -24,6 +24,11 @@ import com.converter.models.ConversionDataDTO;
 import com.converter.models.FileData;
 import com.converter.services.FileService;
 
+/**
+ * 
+ * @author shaziaadeel
+ * FileController test cases
+ */
 @WebMvcTest(FileController.class)
 class FileControllerTest {
 
@@ -42,7 +47,7 @@ class FileControllerTest {
 	/**
 	 * 
 	 * @throws Exception
-	 * Testing a successful test case
+	 * Test case of successful file uploading
 	 */
 	@Test
 	void fileUploadSuccessTest() throws Exception 
@@ -62,7 +67,7 @@ class FileControllerTest {
 		fileData.setFileTypeString("csv");
 		
 		ConversionDataDTO dataList = new ConversionDataDTO();
-		dataList.addConversionData(34.5, "gallons", 236.6, "cups");
+		dataList.addConversionData("34.5", "gallons", "236.6", "cups");
 		
 		//mocking service function
 		when(fileService.readDataFromFile(fileData.getMultipartFile())).thenReturn(dataList);
@@ -77,7 +82,7 @@ class FileControllerTest {
 	/**
 	 * 
 	 * @throws Exception
-	 * Testing a fail case when service return null
+	 * Test case when file uploading fails
 	 */
 	@Test
 	void fileUploadFailTest1() throws Exception 
@@ -97,7 +102,7 @@ class FileControllerTest {
 		fileData.setFileTypeString("csv");
 		
 		ConversionDataDTO dataList = new ConversionDataDTO();
-		dataList.addConversionData(34.5, "gallons", 236.6, "cups");
+		dataList.addConversionData("34.5", "gallons", "236.6", "cups");
 		
 		//mocking service function
 		when(fileService.readDataFromFile(fileData.getMultipartFile())).thenReturn(null);
@@ -108,6 +113,7 @@ class FileControllerTest {
 		MvcResult result = mvc.perform(request).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.model().attributeExists("failmsg")).andReturn();
 	}
+	
 	/**
 	 * 
 	 * @throws Exception

@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 
 /**
  * @author shaziaadeel
- *
+ * ConversionController test cases
  */
 
 @WebMvcTest(ConversionController.class)
@@ -43,7 +43,7 @@ class ConversionControllerTest {
 	/**
 	 * 
 	 * @throws Exception
-	 * Test case of simple loading of application
+	 * Test case for simple loading of application
 	 */
 	@Test
 	void loadApplicationTest() throws Exception {
@@ -57,13 +57,13 @@ class ConversionControllerTest {
 	/**
 	 * 
 	 * @throws Exception
-	 * Test case of simple loading of application
+	 * Test case for performing validation operation
 	 */
 	@Test
 	void conversionTest() throws Exception {
 		
 		ConversionDataDTO form = new ConversionDataDTO();
-		form.addConversionData(34.5, "gallons", 236.6, "cups");
+		form.addConversionData("34.5", "gallons", "236.6", "cups");
 		
 		//org.mockito.Mockito.when(conversionService.convertDataList(form));
 		
@@ -77,7 +77,4 @@ class ConversionControllerTest {
 				.andReturn();
 	
 	}
-
-	
-
 }

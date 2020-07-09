@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 
  * @author shaziaadeel
- *
+ * DTO object for getting form data. It contain list of ConversionData objects
  */
 public class ConversionDataDTO {
 	
@@ -17,14 +17,14 @@ public class ConversionDataDTO {
 		conversionDatas = new ArrayList<ConversionData>();
 	}
 	
-	/// List new record
+	/// Add empty record
 	public void addEmptyConversionData()
 	{
-		this.conversionDatas.add(new ConversionData(0.0, "", 0.0, ""));
+		this.conversionDatas.add(new ConversionData("", "", "", ""));
 	}
 	
 	/// List new record
-	public void addConversionData(Double inputValue, String inputUnit,  Double outputValue, String outputUnit)
+	public void addConversionData(String inputValue, String inputUnit,  String outputValue, String outputUnit)
 	{
 		this.conversionDatas.add(new ConversionData(inputValue, inputUnit, outputValue, outputUnit));
 	}

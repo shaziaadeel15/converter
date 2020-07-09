@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 /**
  * 
  * @author shaziaadeel
- *
+ * FileService is used for providing service of parsing file data and fill DTO (Data Transfer Object) object
  */
 @Service
 public class FileService {
@@ -29,17 +29,26 @@ public class FileService {
 	
     FileService(){}
 
+    /***
+     * Service function accept a multipart file data, parse file and fill DTO object of type ConversionDataDTO
+     * @param multipartFile
+     * @return
+     * @throws FileUploadException
+     */
 	public ConversionDataDTO readDataFromFile(MultipartFile multipartFile) throws FileUploadException 
 	{
+		///return error if input data is null
 		if(multipartFile==null || multipartFile.getOriginalFilename().length() <= 0)
 		{
 			logger.error("User do not select a file");
 			throw new FileUploadException("Please select a CSV file for uploading data");
 		}
 		
+		//create new DTO object
 		datalist = new ConversionDataDTO();
 		String extensionString = FilenameUtils.getExtension(multipartFile.getOriginalFilename());
 		
+		//check extension, utility only support CSV file
 		if(extensionString.equalsIgnoreCase("csv")==false)
 		{
 			logger.error("Not a valid csv file "+multipartFile.getOriginalFilename());
@@ -53,6 +62,7 @@ public class FileService {
 			
 			logger.trace("readDataFromFile...rows length="+rows.size());
 			
+			///parse each row and add in DTO
 			for(String[] row : rows) 
 			{
 				if(row.length<4)
@@ -62,7 +72,7 @@ public class FileService {
 				}
 				logger.trace("readDataFromFile...="+Arrays.toString(row));
 				
-				datalist.addConversionData(Double.parseDouble(row[0]), row[1], Double.parseDouble(row[2]), row[3] );
+				datalist.addConversionData(row[0], row[1], row[2], row[3] );
 			}
 			logger.trace("readDataFromFile...dataList length="+datalist.getConversionDatas().size());
 			return datalist;

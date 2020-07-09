@@ -3,7 +3,7 @@ package com.converter.models.utilities;
 /**
  * 
  * @author shaziaadeel
- * Unit of type temperature 
+ * Class for creating Unit of type temperature 
  */
 public class TemperatureUnit extends Unit{
 	
@@ -25,7 +25,7 @@ public class TemperatureUnit extends Unit{
 	 * @param value
 	 * @return
 	 */
-	public Double transfer(Double value)
+	private Double transfer(Double value)
 	{
 		if(this.getSystemString().equals(SystemTypes.METRIC_SYSTEM_STRING)) {
 			return value / (5.0/9.0) + 32.0;
@@ -34,6 +34,11 @@ public class TemperatureUnit extends Unit{
 			return (value - 32.0)* (5.0 /9.0);
 			
 		}
+	}
+
+	@Override
+	public Double toBase(Double value) {
+		return transfer(value);
 	}
 
 }

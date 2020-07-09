@@ -19,7 +19,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 /**
  * @author shaziaadeel
- *
+ * ErrorController test case
  */
 
 @WebMvcTest(ErrorController.class)
@@ -29,6 +29,10 @@ class ErrorControllerTest {
 	private MockMvc mockMvc;
 	
 
+	/**
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	void testErrorPageTest1() throws Exception
 	{
@@ -36,6 +40,10 @@ class ErrorControllerTest {
 		MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();
 	}
 
+	/**
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	void testErrorPageTest2() throws Exception
 	{

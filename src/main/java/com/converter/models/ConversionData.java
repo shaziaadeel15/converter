@@ -3,19 +3,55 @@ package com.converter.models;
 /**
  * 
  * @author shaziaadeel
- * Model class representing single row of input data
+ * Model class representing single row of input data on web oage
  */
 public class ConversionData {
 	
 	//Input value
-	private Double inputDouble;
+	private String inputValueString;
 	
-	public Double getInputDouble() {
-		return inputDouble;
+	//Input Unit
+	private String inputUnitString;
+	
+	//Student response
+	private String responseValueString;
+	
+	// Output Unit
+	private String outputUnitString;
+	
+	// Result after processing data, it can contain values "correct", "incorrect, "invalid"
+	private String resultString;
+	
+	public ConversionData(String inputValueString, String inputUnitString,  String responseValueString, String outputUnitString ) 
+	{
+		super();
+		this.inputUnitString = inputUnitString;
+		this.outputUnitString = outputUnitString;
+		this.inputValueString = inputValueString;
+		this.responseValueString = responseValueString;
+		this.resultString="";
+	}
+	
+	/**
+	 * 
+	 */
+	public ConversionData() {
+		this.inputValueString="";
+		this.inputUnitString="";
+		this.responseValueString="";
+		this.outputUnitString="";
+		this.resultString="";
 	}
 
-	public void setInputDouble(Double inputDouble) {
-		this.inputDouble = inputDouble;
+	/*
+	 * 
+	 */
+	public String getInputValueString() {
+		return inputValueString;
+	}
+
+	public void setInputValueString(String inputValueString) {
+		this.inputValueString = inputValueString;
 	}
 
 	public String getInputUnitString() {
@@ -26,12 +62,12 @@ public class ConversionData {
 		this.inputUnitString = inputUnitString;
 	}
 
-	public Double getResponseDouble() {
-		return responseDouble;
+	public String getResponseValueString() {
+		return responseValueString;
 	}
 
-	public void setResponseDouble(Double responseDouble) {
-		this.responseDouble = responseDouble;
+	public void setResponseValueString(String responseValueString) {
+		this.responseValueString = responseValueString;
 	}
 
 	public String getOutputUnitString() {
@@ -49,35 +85,6 @@ public class ConversionData {
 	public void setResultString(String resultString) {
 		this.resultString = resultString;
 	}
-
-	//Input Unit
-	private String inputUnitString;
 	
-	//Student response
-	private Double responseDouble;
-	
-	// Output Unit
-	private String outputUnitString;
-	
-	// Result after processing data, it can contain values "correct", "incorrect, "invalid"
-	private String resultString;
-	
-	public ConversionData(Double inputDouble, String inputUnitString,  Double responseDouble, String outputUnitString ) 
-	{
-		super();
-		this.inputUnitString = inputUnitString;
-		this.outputUnitString = outputUnitString;
-		this.inputDouble = inputDouble;
-		this.responseDouble = responseDouble;
-		this.resultString="";
-	}
-	
-	public ConversionData() {
-		this.inputDouble=0.0;
-		this.inputUnitString="";
-		this.responseDouble=0.0;
-		this.outputUnitString="";
-		this.resultString="";
-	}
 	
 }

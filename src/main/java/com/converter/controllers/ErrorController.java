@@ -6,7 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ErrorController 
 {
-	
+	/**
+	 * 
+	 * @return
+	 */
 	@GetMapping("/error")
 	public String error()
 	{

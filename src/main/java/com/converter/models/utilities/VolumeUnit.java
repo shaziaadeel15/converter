@@ -33,9 +33,15 @@ public class VolumeUnit extends Unit{
 	 * @param value
 	 * @return
 	 */
-	public Double applyRatio(Double value)
+	private Double applyRatio(Double value)
 	{
 		return value * this.ratioDouble;
+	}
+
+	@Override
+	public Double toBase(Double value) {
+		// TODO Auto-generated method stub
+		return applyRatio(value);
 	}
 
 }
