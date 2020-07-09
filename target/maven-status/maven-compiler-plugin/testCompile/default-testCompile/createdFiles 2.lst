@@ -1,7 +1,0 @@
-com/converter/controllers/ErrorControllerTest.class
-com/converter/services/utilities/UnitConversionServiceTest.class
-com/converter/services/FileServiceTest.class
-com/converter/controllers/FileControllerTest.class
-com/converter/controllers/ConversionControllerTest.class
-com/converter/services/ConversionServiceTest.class
-com/converter/ConverterApplicationTests.class
