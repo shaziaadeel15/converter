@@ -1,7 +1,5 @@
 package com.converter.controllers;
 
-import java.io.IOException;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,13 +11,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.converter.models.ConversionDataDTO;
-
 import com.converter.models.FileData;
 import com.converter.services.FileService;
 
+/**
+ * 
+ * @author shaziaadeel
+ * Controller for loading file operation
+ */
 @Controller
 public class FileController {
 	
@@ -30,17 +31,17 @@ public class FileController {
 	FileService readfileService;
 	
 	/**
-	 * 
+	 * Invoke when user click "Upload" button, it get file data and use FileService to add data in DTO object
 	 * @param fileData
 	 * @return
 	 */
 	@PostMapping("/fileupload")
 	public ModelAndView uploadFile(@ModelAttribute FileData fileData)
 	{
-		
 		///Map for sending model
 		Map<String, Object> params = new HashMap<>();
 		
+		// Error checking
 		if(fileData == null || fileData.getMultipartFile() == null)
 		{
 			logger.error("file ="+fileData.getFileTypeString());
