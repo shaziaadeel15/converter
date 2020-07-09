@@ -43,10 +43,25 @@
 										</div>
 										<div class="row">	
 											<label for="inputUnitString" class="control-label col-sm-5">Input Unit</label> 
-											<input id="inputUnitString" class="form-control col-sm-6"
-											th:field="*{inputUnitString}" /> 
+											<!--  <input id="inputUnitString" class="form-control col-sm-6"
+											th:field="*{inputUnitString}" /> -->
+											<input list=sourceunits class="form-control col-sm-6" th:field="*{inputUnitString}">
+												<datalist id=sourceunits  >
+												 <option value="liters"></option>
+												 <option value="gallons"></option>
+												 <option value="cups"></option>
+												 <option value="tablespoons"></option>
+												 <option value="cubic-inches"></option>
+												 <option value="cubic-feet"></option>
+												 <option value="kelvin"></option>
+												 <option value="celsius"></option>
+												 <option value="fahrenheit"></option>
+												 <option value="rankine"></option>
+												</datalist>
 											<br> 
-										</div>	
+										</div>
+										
+										
 										<div class="row">
 											<label for="responseDouble" class="control-label col-sm-5">Student Response</label> 
 											<input id="responseDouble" class="form-control col-sm-6"
@@ -55,8 +70,21 @@
 										</div>
 										<div class="row">
 											<label for="outputUnitString" class="control-label col-sm-5">Output Unit</label> 
-											<input id="outputUnitString" class="form-control col-sm-6"
-											th:field="*{outputUnitString}" /> 
+											<!--  <input id="outputUnitString" class="form-control col-sm-6"
+											th:field="*{outputUnitString}" /> -->
+											<input list=targetunits class="form-control col-sm-6" th:field="*{outputUnitString}">
+												<datalist id=targetunits  >
+												 <option value="liters"></option>
+												 <option value="gallons"></option>
+												 <option value="cups"></option>
+												 <option value="tablespoons"></option>
+												 <option value="cubic-inches"></option>
+												 <option value="cubic-feet"></option>
+												 <option value="kelvin"></option>
+												 <option value="celsius"></option>
+												 <option value="fahrenheit"></option>
+												 <option value="rankine"></option>
+												</datalist>
 											<br>
 										</div>
 										

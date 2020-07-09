@@ -55,15 +55,45 @@
 									<input id="inputDouble" class="form-control col-sm-2"
 									 th:field="*{conversionDatas[__${itemStat.index}__].inputDouble}"/>  
 									
-									<input id="inputUnitString" class="form-control col-sm-3 dropdown-toggle"
-									 th:field="*{conversionDatas[__${itemStat.index}__].inputUnitString}"/>  
- 
+									
+									<!--  <input id="inputUnitString" class="form-control col-sm-3 "
+									 th:field="*{conversionDatas[__${itemStat.index}__].inputUnitString}"/>  -->
+ 									
+ 									<input list=sourceunits class="form-control col-sm-3" 
+ 												th:field="*{conversionDatas[__${itemStat.index}__].inputUnitString}">
+											<datalist id=sourceunits  >
+											 <option value="liters"></option>
+											 <option value="gallons"></option>
+											 <option value="cups"></option>
+											 <option value="tablespoons"></option>
+											 <option value="cubic-inches"></option>
+											 <option value="cubic-feet"></option>
+											 <option value="kelvin"></option>
+											 <option value="celsius"></option>
+											 <option value="fahrenheit"></option>
+											 <option value="rankine"></option>
+											</datalist>
 									
 									<input id="responseDouble" class="form-control col-sm-2"
 									 th:field="*{conversionDatas[__${itemStat.index}__].responseDouble}"/> 
 									
-									<input id="outputUnitString" class="form-control col-sm-3"
-									 th:field="*{conversionDatas[__${itemStat.index}__].outputUnitString}"/> 
+									<!--  <input id="outputUnitString" class="form-control col-sm-3"
+									 th:field="*{conversionDatas[__${itemStat.index}__].outputUnitString}"/> -->
+									 
+									 <input list=targetunits class="form-control col-sm-3" 
+ 												th:field="*{conversionDatas[__${itemStat.index}__].outputUnitString}">
+											<datalist id=targetunits  >
+											 <option value="liters"></option>
+											 <option value="gallons"></option>
+											 <option value="cups"></option>
+											 <option value="tablespoons"></option>
+											 <option value="cubic-inches"></option>
+											 <option value="cubic-feet"></option>
+											 <option value="kelvin"></option>
+											 <option value="celsius"></option>
+											 <option value="fahrenheit"></option>
+											 <option value="rankine"></option>
+											</datalist>
 									
 									<input id="resultString" class="form-control col-sm-2"
 									 th:field="*{conversionDatas[__${itemStat.index}__].resultString}" readonly/>

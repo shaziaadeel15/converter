@@ -38,6 +38,19 @@ class ConversionServiceTest {
 		
 	}
 
+	/**
+	 * Test Case: When conversion is done correctly with error of 0.1
+	 */
+	@Test
+	void correctTestCase2() {
+		
+		ConversionData data= new ConversionData(10.0, "cubic-feet", 74.7, "gallon");
+		
+		conversionService.convert(data);
+
+		assertEquals(conversionService.CORRECT_RESULT, conversionService.convert(data), "Conversion Service test case 1 fail");
+		
+	}
 	
 	/**
 	 * Test Case: When conversion is done incorrectly in input data

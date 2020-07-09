@@ -44,10 +44,12 @@ public class ConverionService {
 		try {
 			Double actualResultDouble = unitConversionService.convert(data.getInputUnitString(),  data.getInputDouble(), data.getOutputUnitString());
 			logger.trace("ConverionService...actual value from user = "+actualResultDouble);
+			
 			Double resDouble =  Math.round(data.getResponseDouble() * 10D) / 10D;
 			logger.trace("ConverionService...after rounding  = "+resDouble);
 			
-			if(actualResultDouble.doubleValue() == resDouble.doubleValue()){
+			///Check calculated value equal to target value, iff there is different of 0.1 then ignore it
+			if( Math.abs(actualResultDouble.doubleValue() - resDouble.doubleValue() ) < 0.2){
 				return CORRECT_RESULT;
 			}
 			else {
