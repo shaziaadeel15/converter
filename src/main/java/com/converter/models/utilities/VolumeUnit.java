@@ -33,7 +33,7 @@ public class VolumeUnit extends Unit{
 	 * @param value
 	 * @return
 	 */
-	private Double applyRatio(Double value)
+	public Double applyRatio(Double value)
 	{
 		return value * this.ratioDouble;
 	}

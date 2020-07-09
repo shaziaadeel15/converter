@@ -25,7 +25,7 @@ public class TemperatureUnit extends Unit{
 	 * @param value
 	 * @return
 	 */
-	private Double transfer(Double value)
+	public Double transfer(Double value)
 	{
 		if(this.getSystemString().equals(SystemTypes.METRIC_SYSTEM_STRING)) {
 			return value / (5.0/9.0) + 32.0;

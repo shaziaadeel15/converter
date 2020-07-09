@@ -32,7 +32,7 @@ public class ConverionService {
 	}
 
 	/**
-	 * Function to unit conversion using UnitConversionService service then compare result with value  enter by user
+	 * Function to unit conversion using  service then compare result with value  enter by user
 	 * It is accepting threshold error of 0.1
 	 * @param data
 	 * @return Return string of type 

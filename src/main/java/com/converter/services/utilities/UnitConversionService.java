@@ -36,7 +36,6 @@ public class UnitConversionService {
 	 */
 	public Double convert(String inputUnitString, Double inputValue, String outputUnitString)
 	{
-		
 		if(inputUnitString==null 
 				|| inputValue==null || outputUnitString==null)
 			throw new IllegalArgumentException("Illegel Argument");
@@ -45,9 +44,11 @@ public class UnitConversionService {
 		Unit sourceUnit = UnitFactory.buildUnit( inputUnitString );
 		Unit targetUnit = UnitFactory.buildUnit( outputUnitString );
 		
+		
 		//if both units are same then do nothing
 		if(sourceUnit.getNameString().equals(targetUnit.getNameString()))
 		{
+			
 			logger.trace("UnitConversionService....both units are same"+inputUnitString+" -> "+outputUnitString);
 			return resultDouble;
 		}
@@ -55,6 +56,7 @@ public class UnitConversionService {
 		//If input and out units are from different system then return error
 		if(sourceUnit.getTypeString().equals(targetUnit.getTypeString()) == false)
 		{
+			System.out.println("convert...different type units");
 			logger.error("UnitConversionService...."+inputUnitString+" -> "+outputUnitString+" conversion not possible");
 			throw new IllegalArgumentException("Both unit are of different type, conversion is not possible");
 		}
@@ -63,6 +65,7 @@ public class UnitConversionService {
 		/// If source unit is of type volume then input value must be greater than or equal to  0
 		if(sourceUnit instanceof VolumeUnit  && inputValue < 0.0 )
 		{
+			System.out.println("convert...volume unit cannot be less than 0");
 			logger.error("UnitConversionService...."+inputUnitString+" has value "+inputValue+" less than zero");
 			throw new IllegalArgumentException("UnitConversionService...."+inputUnitString+" has value "+inputValue+" less than zero");
 		}
@@ -76,8 +79,8 @@ public class UnitConversionService {
 		//conversion between metric and imperial systems
 		if(sourceUnit.getSystemString().equals(targetUnit.getSystemString()) ==false)
 		{
-			resultDouble =  sourceUnit.toBase(resultDouble);
-			/*
+			//resultDouble =  sourceUnit.toBase(resultDouble);
+			
 			//type is temperature then apply transfer function
 			if (sourceUnit instanceof TemperatureUnit) {
 				resultDouble =  ((TemperatureUnit) sourceUnit).transfer(resultDouble);
@@ -85,7 +88,7 @@ public class UnitConversionService {
 			//type is volume apply ratio function
 			else {
 				resultDouble =  ((VolumeUnit) sourceUnit).applyRatio(resultDouble);
-			}*/
+			}
 		}
 		
 		//add destination anchor shift
