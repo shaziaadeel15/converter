@@ -79,8 +79,8 @@ public class UnitConversionService {
 		//conversion between metric and imperial systems
 		if(sourceUnit.getSystemString().equals(targetUnit.getSystemString()) ==false)
 		{
-			//resultDouble =  sourceUnit.toBase(resultDouble);
-			
+			resultDouble =  sourceUnit.toBase(resultDouble);
+			/*
 			//type is temperature then apply transfer function
 			if (sourceUnit instanceof TemperatureUnit) {
 				resultDouble =  ((TemperatureUnit) sourceUnit).transfer(resultDouble);
@@ -88,7 +88,7 @@ public class UnitConversionService {
 			//type is volume apply ratio function
 			else {
 				resultDouble =  ((VolumeUnit) sourceUnit).applyRatio(resultDouble);
-			}
+			}*/
 		}
 		
 		//add destination anchor shift
